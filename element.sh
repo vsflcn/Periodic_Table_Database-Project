@@ -35,5 +35,16 @@ PRINT_ELEMENT() {
 
     echo "The element with atomic number $ATOMIC_NUMBER is $NAME ($SYMBOL). It's a $TYPE, with a mass of $ATOMIC_MASS amu. $NAME has a melting point of $MELTING_POINT_CELSIUS celsius and a boiling point of $BOILING_POINT_CELSIUS celsius."
   fi
-  
 }
+
+START_PROGRAM() {
+  CHECK=$($PSQL "SELECT COUNT(*) FROM elements WHERE atomic_number=1000;")
+  if [[ $CHECK -gt 0 ]]
+  then
+    clear
+  fi
+  MAIN_PROGRAM $1
+}
+
+START_PROGRAM $1
+
