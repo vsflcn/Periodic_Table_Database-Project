@@ -9,3 +9,13 @@ MAIN_PROGRAM() {
     PRINT_ELEMENT $1
   fi
 }
+
+PRINT_ELEMENT() {
+  INPUT=$1
+  if [[ ! $INPUT =~ ^[0-9]+$ ]]
+  then
+    ATOMIC_NUMBER=$(echo $($PSQL "SELECT atomic_number FROM elements WHERE symbol='$INPUT' OR name='$INPUT';") | sed 's/ //g')
+  else
+    ATOMIC_NUMBER=$(echo $($PSQL "SELECT atomic_number FROM elements WHERE atomic_number=$INPUT;") | sed 's/ //g')
+  fi
+}
