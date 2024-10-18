@@ -10,7 +10,7 @@ MAIN_PROGRAM() {
   fi
 }
 
-# checks if input coteins numbers
+# checks if input contains numbers
 PRINT_ELEMENT() {
   INPUT=$1
   if [[ ! $INPUT =~ ^[0-9]+$ ]]
